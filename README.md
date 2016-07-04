@@ -9,13 +9,19 @@
 
 ### Array as Set
 
-1. sum_elements(integer[])
-1. array_greatest_elements(aanyarray,banyarray)
-1. array_least_elements(aanyarray,banyarray)
-1. find_percentile_location(integer[],doubleprecision)
+1. array_greatest_elements(a  anyarray,b  anyarray)
+1. array_least_elements(a  anyarray,b  anyarray)
+1. array_argmin(a  anyarray)
+1. array_argmax(a  anyarray)
+1. array_minval(a  anyarray)
+1. array_maxval(a  anyarray)
 
+### Other Set Like Things
+1. find_percentile_location(integer[],double  precision)
+1. sum_elements(integer[])
+1.  
 ### Vector Distances
 
-1. p1_norm_length_normalized(doubleprecision[],doubleprecision[])
-1. p1_norm(doubleprecision[],doubleprecision[])
+1. p1_norm_length_normalized(double precision[],double precision[])
+1. p1_norm(double precision[],double precision[])
 
