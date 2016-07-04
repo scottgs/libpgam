@@ -15212,8 +15212,6 @@ PG_SERVER_INCDIR=`pg_config --includedir-server`
 
 
 CPPFLAGS="-I$PG_SERVER_INCDIR"
-AM_CPPFLAGS="-Wall -Wextra -g -rdynamic"
-
 
 { $as_echo "$as_me:${as_lineno-$LINENO}: \"************************************\"" >&5
 $as_echo "$as_me: \"************************************\"" >&6;}
@@ -15229,6 +15227,9 @@ else
   as_fn_error $? "Header postgres.h not found" "$LINENO" 5
 fi
 
+
+
+AM_CPPFLAGS="-Wall -Wextra -g -rdynamic"
 
 
 ac_ext=cpp
@@ -15318,8 +15319,6 @@ if test $ac_cv_c_const = no; then
 $as_echo "#define const /**/" >>confdefs.h
 
 fi
-
-
 
 
 ac_config_files="$ac_config_files Makefile doc/Makefile src/Makefile sql/Makefile tests/Makefile"

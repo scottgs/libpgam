@@ -14,13 +14,6 @@
 
 #include "local_pg.h"
 
-/*
-   
-  sum_elements (array a)
-   
-  s = SUM(a_i)
-*/
-
 PG_FUNCTION_INFO_V1(argmin);
 
 Datum
