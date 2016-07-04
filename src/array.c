@@ -12,6 +12,8 @@
 #include <stdlib.h>
 #include <math.h>
 
+#include "local_pg.h"
+
 /*
    
   sum_elements (array a)
@@ -100,7 +102,6 @@ static void incrementCoord(int * idx, int * dimSize, int ndim, int coord)
      }
 }
 
-#define IT_RETURN_NULL() {if(result != NULL){pfree(result); result = NULL;} return NULL;}
 /*
  * The checks made by arrayIterator are the following. If they fail, NULL is returned:
  * 
@@ -313,37 +314,7 @@ bool unaryTest(const ArrayType * array1, const ArrayType * array2, void * data)
      return false;
 }
 
-#define RETURN_NON_NULL_ARG(a, b)			\
-     if(a == NULL || b == NULL)				\
-     {							\
-	  if(a)						\
-	  {						\
-	       PG_RETURN_ARRAYTYPE_P(a);		\
-	  }						\
-	  else if(b)					\
-	  {						\
-	       PG_RETURN_ARRAYTYPE_P(b);		\
-	  }						\
-	  else						\
-	  {						\
-	       PG_RETURN_NULL();			\
-	  }						\
-     }							\
-     
 
-/* The arguments should not be NULL since I do not check for this, and
- * I think ARR_SIZE will fail.*/
-#define RETURN_NON_EMPTY_ARRAY_ARG(a, b)	\
-     if(ARR_NDIM(a) == 0)			\
-     {						\
-	  PG_RETURN_ARRAYTYPE_P(b);		\
-     }						\
-     else if(ARR_NDIM(b) == 0)			\
-     {						\
-	  PG_RETURN_ARRAYTYPE_P(a);		\
-     }	
-
-#define GET_ARRAY_PTR_COPY(n) PG_ARGISNULL(n) ? NULL : PG_GETARG_ARRAYTYPE_P_COPY(n);
 
 /* ADDITION */
 Datum addCb(const Datum num1, const Datum num2, Oid oid, const int * idxOne, const int * idxTwo, void * data)
@@ -416,8 +387,7 @@ Datum subCb(const Datum num1, const Datum num2, Oid oid, const int * idxOne, con
      else if(oid == FLOAT4OID)
      {
 	ereport(INFO, (errmsg_internal("FLOAT4OID")));
-	 // ret = DirectFunctionCall2(float4mi, num1, num2);
-	  ret = DirectFunctionCall2(float8mi, num1, num2);
+	 ret = DirectFunctionCall2(float4mi, num1, num2);
      }
      else if(oid == FLOAT8OID)
      {

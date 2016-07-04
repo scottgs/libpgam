@@ -1,16 +1,7 @@
 -- ************************************************
 --	Installs the wrapper functions into the DB
 -- ************************************************
-          
--- ************************************************
--- Math Functions
--- ------------------------------------------------
 
-
-
--- ************************************************
--- Array as Set
--- ------------------------------------------------
 CREATE OR REPLACE FUNCTION sum_elements(integer[]) 
 	RETURNS bigint
      AS '/usr/local/lib/libpgam.so', 'sum_elements'
@@ -45,16 +36,13 @@ CREATE OR REPLACE FUNCTION array_least_elements(a anyarray, b anyarray)
 	RETURNS anyarray
      AS '/usr/local/lib/libpgam.so', 'arrayLeastElements'
      LANGUAGE C;
-               
+          
+     
 CREATE OR REPLACE FUNCTION find_percentile_location(integer[], double precision) 
 	RETURNS integer
      AS '/usr/local/lib/libpgam.so', 'find_percentile_location'
      LANGUAGE C STRICT;
 
-
--- ************************************************
--- Vector Distance
--- ------------------------------------------------
 
 CREATE OR REPLACE FUNCTION p1_norm_length_normalized(double precision[], double precision[]) 
 	RETURNS double precision
@@ -64,5 +52,16 @@ CREATE OR REPLACE FUNCTION p1_norm_length_normalized(double precision[], double 
 CREATE OR REPLACE FUNCTION p1_norm(double precision[], double precision[]) 
 	RETURNS double precision
      AS '/usr/local/lib/libpgam.so', 'pg_p1_norm'
+     LANGUAGE C STRICT;
+
+
+CREATE OR REPLACE FUNCTION array_argmin(a anyarray) 
+	RETURNS int
+     AS '/usr/local/lib/libpgam.so', 'argmin'
+     LANGUAGE C STRICT;
+
+CREATE OR REPLACE FUNCTION array_argmax(a anyarray) 
+	RETURNS int
+     AS '/usr/local/lib/libpgam.so', 'argmax'
      LANGUAGE C STRICT;
 

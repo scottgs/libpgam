@@ -636,6 +636,7 @@ am__EXEEXT_TRUE
 LTLIBOBJS
 LIBOBJS
 AM_CPPFLAGS
+PG_SERVER_INCDIR
 CXXCPP
 OTOOL64
 OTOOL
@@ -15205,11 +15206,22 @@ ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $
 ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
-## check that we have the postgres stuff that we need
-#CPPFLAGS="-I/usr/include/postgresql-9.4/server/"
-CPPFLAGS="-I/usr/include/postgresql/9.3/server/"
+# Use pg_config --includedir-server to find out where the PostgreSQL server header files are installed on your system (or the system that your users will be running on).
 
-#AC_CHECK_HEADER([postgresql/server/postgres.h], [], AC_MSG_ERROR([Header postgresql/server/postgres.h not found]))
+PG_SERVER_INCDIR=`pg_config --includedir-server`
+
+
+CPPFLAGS="-I$PG_SERVER_INCDIR"
+AM_CPPFLAGS="-Wall -Wextra -g -rdynamic"
+
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: \"************************************\"" >&5
+$as_echo "$as_me: \"************************************\"" >&6;}
+{ $as_echo "$as_me:${as_lineno-$LINENO}: \"PostgreSQL Server Include: $CPPFLAGS\"" >&5
+$as_echo "$as_me: \"PostgreSQL Server Include: $CPPFLAGS\"" >&6;}
+{ $as_echo "$as_me:${as_lineno-$LINENO}: \"************************************\"" >&5
+$as_echo "$as_me: \"************************************\"" >&6;}
+
 ac_fn_c_check_header_mongrel "$LINENO" "postgres.h" "ac_cv_header_postgres_h" "$ac_includes_default"
 if test "x$ac_cv_header_postgres_h" = xyes; then :
 
@@ -15308,7 +15320,6 @@ $as_echo "#define const /**/" >>confdefs.h
 fi
 
 
-AM_CPPFLAGS="-Wall -Wextra -g -rdynamic"
 
 
 ac_config_files="$ac_config_files Makefile doc/Makefile src/Makefile sql/Makefile tests/Makefile"

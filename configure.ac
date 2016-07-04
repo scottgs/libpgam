@@ -19,19 +19,26 @@ AC_PROG_LIBTOOL
 ## Ensure regular C
 AC_LANG([C])
 
-## check that we have the postgres stuff that we need
-#CPPFLAGS="-I/usr/include/postgresql-9.4/server/"
-CPPFLAGS="-I/usr/include/postgresql/9.3/server/"
+# Use pg_config --includedir-server to find out where the PostgreSQL server header files are installed on your system (or the system that your users will be running on).
 
-#AC_CHECK_HEADER([postgresql/server/postgres.h], [], AC_MSG_ERROR([Header postgresql/server/postgres.h not found]))
+PG_SERVER_INCDIR=`pg_config --includedir-server`
+AC_SUBST([PG_SERVER_INCDIR])
+
+CPPFLAGS="-I$PG_SERVER_INCDIR"
+AM_CPPFLAGS="-Wall -Wextra -g -rdynamic"
+AC_SUBST([AM_CPPFLAGS])
+
+AC_MSG_NOTICE("************************************")
+AC_MSG_NOTICE("PostgreSQL Server Include: $CPPFLAGS")
+AC_MSG_NOTICE("************************************")
+
 AC_CHECK_HEADER([postgres.h], [], AC_MSG_ERROR([Header postgres.h not found]))
 
 AC_LANG([C++])
 
 AC_C_CONST
 
-AM_CPPFLAGS="-Wall -Wextra -g -rdynamic"
-AC_SUBST([AM_CPPFLAGS])
+
 
 AC_CONFIG_FILES([Makefile
 				doc/Makefile

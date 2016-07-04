@@ -7,5 +7,5 @@ AM_CPPFLAGS= $(all_includes)
 
 
 # Sources
-libpgam_la_SOURCES = magic.c array.c distance_metrics.c
+libpgam_la_SOURCES = magic.c array.c argmaxmin.c distance_metrics.c
 
