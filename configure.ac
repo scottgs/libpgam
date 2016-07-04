@@ -25,8 +25,6 @@ PG_SERVER_INCDIR=`pg_config --includedir-server`
 AC_SUBST([PG_SERVER_INCDIR])
 
 CPPFLAGS="-I$PG_SERVER_INCDIR"
-AM_CPPFLAGS="-Wall -Wextra -g -rdynamic"
-AC_SUBST([AM_CPPFLAGS])
 
 AC_MSG_NOTICE("************************************")
 AC_MSG_NOTICE("PostgreSQL Server Include: $CPPFLAGS")
@@ -34,11 +32,12 @@ AC_MSG_NOTICE("************************************")
 
 AC_CHECK_HEADER([postgres.h], [], AC_MSG_ERROR([Header postgres.h not found]))
 
+AM_CPPFLAGS="-Wall -Wextra -g -rdynamic"
+AC_SUBST([AM_CPPFLAGS])
+
 AC_LANG([C++])
 
 AC_C_CONST
-
-
 
 AC_CONFIG_FILES([Makefile
 				doc/Makefile
