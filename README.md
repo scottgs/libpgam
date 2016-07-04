@@ -2,10 +2,10 @@
 
 ### Math Functions
 
-1. array_add(aanyarray,banyarray)
-1. array_subtract(aanyarray,banyarray)
-1. array_multiply_scalar(aanyarray,scalarnumeric)
-1. array_divide_scalar(aanyarray,scalarnumeric)
+1. array_add(a  anyarray,b  anyarray)
+1. array_subtract(a  anyarray,b  anyarray)
+1. array_multiply_scalar(a  anyarray,scalar numeric)
+1. array_divide_scalar(a  anyarray,scalar numeric)
 
 ### Array as Set
 
