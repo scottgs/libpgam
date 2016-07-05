@@ -38,6 +38,7 @@ CREATE OR REPLACE FUNCTION array_divide_scalar(a anyarray, scalar numeric)
      LANGUAGE C IMMUTABLE STRICT;
 
 -- TODO: Move to C
+-- Hadamard_product_(matrices)
 CREATE OR REPLACE FUNCTION array_product(a anyarray, b anyarray)
 RETURNS ANYARRAY
 LANGUAGE SQL 
